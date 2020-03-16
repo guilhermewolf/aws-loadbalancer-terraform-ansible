@@ -13,7 +13,10 @@
   tags: [ 'configure' ]
 
 - name: copy demo app source
-  template: src=demo.wsgi.j2 dest=/var/www/demo/demo.wsgi mode=0755
+  template:
+    src: demo.wsgi.j2
+    dest: /var/www/demo/demo.wsgi
+    mode: 0755
   notify: restart apache2
   tags: [ 'configure' ]
 

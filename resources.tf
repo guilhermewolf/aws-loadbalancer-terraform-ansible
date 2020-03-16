@@ -18,6 +18,18 @@ resource "aws_security_group" "example" {
     to_port   = 22
     protocol  = "tcp"
   }
+  ingress {
+    self      = true
+    from_port = 80
+    to_port   = 80
+    protocol  = "tcp"
+  }
+  ingress {
+    self      = true
+    from_port = 3306
+    to_port   = 3306
+    protocol  = "tcp"
+  }
   // Terraform removes the default rule
   egress {
     from_port   = 0

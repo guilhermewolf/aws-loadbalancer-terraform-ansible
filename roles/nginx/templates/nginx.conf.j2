@@ -1,6 +1,6 @@
 upstream {{ item.key }}{
-{% for server in groups.webserver %}
-  server {{ server }}:{{ item.value.backend }};
+{% for host in groups['webserver'] %}
+  server {{ hostvars[host]['ansible_facts']['eth0']['ipv4']['address'] }}:{{ item.value.backend }};
 {% endfor %}
 }
 
