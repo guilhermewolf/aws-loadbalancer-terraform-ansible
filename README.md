@@ -14,6 +14,7 @@ git clone https://github.com/guilhermewolf/aws-loadbalancer-terraform-ansible.gi
 Será necessario possuir uma conta na AWS e criar as chaves de acesso para utilziarmos na configuração do AWS CLI
 # AWS CLI
 Para instalar o AWS CLI utilize a documentação oficial da Amazon (https://docs.aws.amazon.com/pt_br/cli/latest/userguide/install-cliv2.html)
+
 Com o AWS CLI instalado basta fazer a configuração padrão dele
 ```shell
 aws configure
