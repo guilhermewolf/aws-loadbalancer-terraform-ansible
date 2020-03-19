@@ -5,8 +5,9 @@ regions:
 
 filters:
    instance-state-name: running
+   tag:Provider: terraform
 # Enter the VPC-ID from terraform outputs or aws console
-   vpc-id: vpc-8d9ca5f7
+   # vpc-id: vpc-8d9ca5f7
 
 # hostnames:
 #     - private-ip-address

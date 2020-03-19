@@ -1,9 +1,13 @@
 # aws-loadbalancer-terraform-ansible
 Está é um repositorio contento os recursos para o provisionamento de infraestruturana AWS com o Terraform e uma playbook do Ansible para configurarmos uma aplicação web.
 
-<div align="center" style="float: left">
-  <img alt="chart" width="250" src="https://github.com/guilhermewolf/aws-loadbalancer-terraform-ansible/blob/master/chart.png" />
-</div>
+```mermaid
+graph LR
+  ELB --> app1
+  ELB --> app2
+  app1 --> DB
+  app2 --> DB
+```
 
 
 ## Começamos baixando nossos arquivos
