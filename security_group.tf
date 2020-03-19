@@ -9,7 +9,6 @@ resource "aws_security_group" "elb" {
     to_port   = 80
     protocol  = "tcp"
   }
-  // Terraform removes the default rule
   egress {
     from_port   = 0
     to_port     = 0
@@ -39,17 +38,32 @@ resource "aws_security_group" "internal" {
     to_port         = 80
     protocol        = "tcp"
   }
-  ingress {
-    self      = true
-    from_port = 3306
-    to_port   = 3306
-    protocol  = "tcp"
-  }
-  // Terraform removes the default rule
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "allow-mariadb" {
+  vpc_id      = aws_vpc.main.id
+  name        = "allow-mariadb"
+  description = "allow-mariadb"
+  ingress {
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [aws_security_group.internal.id]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    self        = true
+  }
+  tags = {
+    Name = "allow-mariadb"
   }
 }

@@ -7,14 +7,6 @@
       apt: update_cache=yes cache_valid_time=86400
       tags: [ 'packages' ]
 
-- hosts: database
-  become: true
-  roles:
-    - role: mysql
-      db_user_name: "{{ db_user }}"
-      db_user_pass: "{{ db_pass }}"
-      db_user_host: '%'
-
 - hosts: webserver
   become: true
   gather_facts: false

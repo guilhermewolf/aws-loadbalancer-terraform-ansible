@@ -1,4 +1,4 @@
 ---
-db_name: demo
-db_user: demo
-db_pass: teste
+db_name: mariadb
+db_user: root
+db_pass: euamopudim

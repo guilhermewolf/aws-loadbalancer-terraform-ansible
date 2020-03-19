@@ -3,7 +3,7 @@ execfile(activate_this, dict(__file__=activate_this))
 
 import os
 {% for host in groups['database'] %}
-os.environ['DATABASE_URI'] = 'mysql://{{ db_user }}:{{ db_pass }}@{{ hostvars[host]['ansible_facts']['eth0']['ipv4']['address']  }}/{{ db_name }}'
+os.environ['DATABASE_URI'] = 'mysql://{{ db_user }}:{{ db_pass }}@{{ lookup('file', 'rds_endpoint',) }}/{{ db_name }}'
 {% endfor %}
 
 import sys
