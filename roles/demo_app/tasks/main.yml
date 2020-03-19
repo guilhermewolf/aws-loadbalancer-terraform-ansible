@@ -1,6 +1,8 @@
 ---
-- name: install apache2
-  apt: name={{item}} state=present
+- name: install python goodies
+  apt:
+    name: "{{item}}"
+    state: present
   with_items:
     - python-pip
     - python-virtualenv
@@ -8,7 +10,10 @@
   tags: [ 'packages' ]
 
 - name: copy demo app source
-  copy: src=demo/app/ dest=/var/www/demo mode=0755
+  copy:
+    src: demo/app/
+    dest: /var/www/demo
+    mode: 0755
   notify: restart apache2
   tags: [ 'configure' ]
 
@@ -21,12 +26,17 @@
   tags: [ 'configure' ]
 
 - name: copy apache virtual host config
-  copy: src=demo/demo.conf dest=/etc/apache2/sites-available mode=0755
+  copy:
+    src: demo/demo.conf
+    dest: /etc/apache2/sites-available
+    mode: 0755
   notify: restart apache2
   tags: [ 'configure' ]
 
 - name: setup python virtualenv
-  pip: requirements=/var/www/demo/requirements.txt virtualenv=/var/www/demo/.venv
+  pip:
+    requirements: /var/www/demo/requirements.txt
+    virtualenv: /var/www/demo/.venv
   notify: restart apache2
   tags: [ 'system' ]
 
